@@ -1,0 +1,257 @@
+{
+  "common": {
+    "skipToMainContent": "Aller au contenu principal",
+    "skipToFooter": "Aller au pied de page",
+    "viewAll": "Voir Tout",
+    "viewMore": "Voir Plus",
+    "learnMore": "En Savoir Plus",
+    "getStarted": "Commencer",
+    "search": "Rechercher",
+    "close": "Fermer",
+    "menu": "Menu",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "products": "Produits",
+    "etfs": "ETFs",
+    "models": "Modèles",
+    "digitalAssets": "Actifs Numériques",
+    "insights": "Perspectives",
+    "about": "À Propos",
+    "investors": "Investisseurs",
+    "contact": "Contact",
+    "login": "Connexion",
+    "corporateWebsite": "Site Web Corporatif",
+    "wisdomtreeInvestments": "WisdomTree Investissements",
+    "wisdomtreePrime": "WisdomTree Prime",
+    "wisdomtreeConnect": "WisdomTree Connect",
+    "investorRelations": "Relations Investisseurs",
+    "localSites": "Sites Locaux",
+    "thoughtLeadership": "Leadership Éclairé",
+    "press": "Presse",
+    "careers": "Carrières",
+    "aboutUs": "À Propos de Nous",
+    "usInvestors": "Investisseurs Américains",
+    "europeInvestors": "Investisseurs Européens",
+    "unitedStates": "États-Unis",
+    "switzerland": "Suisse",
+    "germany": "Allemagne",
+    "finland": "Finlande",
+    "france": "France",
+    "unitedKingdom": "Royaume-Uni",
+    "ireland": "Irlande",
+    "italy": "Italie",
+    "luxembourg": "Luxembourg",
+    "netherlands": "Pays-Bas",
+    "norway": "Norvège",
+    "sweden": "Suède"
+  },
+  "header": {
+    "companyName": "WisdomTree",
+    "tagline": "Investissement moderne pour le monde moderne",
+    "searchPlaceholder": "Rechercher des produits, perspectives ou sujets"
+  },
+  "hero": {
+    "title": "Façonnez Votre Avenir Financier",
+    "subtitle": "Accédez à des ETFs innovants, des modèles et des solutions d'actifs numériques conçus pour les investisseurs d'aujourd'hui",
+    "primaryCta": "Explorer les Produits",
+    "secondaryCta": "Découvrir WisdomTree",
+    "description": "WisdomTree est un innovateur financier mondial, offrant une gamme diversifiée de produits négociés en bourse (ETPs), de modèles et de solutions, ainsi que des produits liés aux actifs numériques."
+  },
+  "products": {
+    "title": "Solutions d'Investissement",
+    "subtitle": "Découvrez notre gamme complète de produits d'investissement",
+    "etfs": {
+      "title": "Fonds Négociés en Bourse",
+      "description": "Accédez à des ETFs transparents et rentables dans plusieurs classes d'actifs",
+      "viewProducts": "Voir les Produits ETF"
+    },
+    "models": {
+      "title": "Modèles d'Investissement",
+      "description": "Solutions de portefeuille professionnelles pour les conseillers financiers",
+      "viewModels": "Voir les Modèles"
+    },
+    "digitalAssets": {
+      "title": "Actifs Numériques",
+      "description": "Produits numériques de nouvelle génération et solutions blockchain",
+      "viewDigitalAssets": "Voir les Actifs Numériques"
+    }
+  },
+  "features": {
+    "title": "Pourquoi Choisir WisdomTree",
+    "innovation": {
+      "title": "Innovation",
+      "description": "Exploiter la dernière infrastructure financière pour une expérience utilisateur améliorée"
+    },
+    "access": {
+      "title": "Accès",
+      "description": "Démocratiser l'accès à des stratégies d'investissement sophistiquées"
+    },
+    "transparency": {
+      "title": "Transparence",
+      "description": "Produits clairs et transparents qui mettent l'accent sur la compréhension des investisseurs"
+    }
+  },
+  "platforms": {
+    "title": "Nos Plateformes",
+    "prime": {
+      "title": "WisdomTree Prime®",
+      "description": "Portefeuille numérique natif blockchain pour les investisseurs modernes",
+      "learnMore": "En Savoir Plus Sur Prime"
+    },
+    "connect": {
+      "title": "WisdomTree Connect™",
+      "description": "Plateforme institutionnelle pour les investisseurs professionnels",
+      "learnMore": "En Savoir Plus Sur Connect"
+    }
+  },
+  "insights": {
+    "title": "Perspectives du Marché",
+    "subtitle": "Restez informé avec nos dernières recherches et commentaires de marché",
+    "latestInsights": "Dernières Perspectives",
+    "viewAllInsights": "Voir Toutes les Perspectives",
+    "categories": {
+      "marketOutlook": "Perspectives du Marché",
+      "productSpotlight": "Produit à la Une",
+      "research": "Recherche",
+      "education": "Éducation"
+    }
+  },
+  "about": {
+    "title": "À Propos de WisdomTree",
+    "description": "WisdomTree est un innovateur financier mondial, offrant une gamme diversifiée de produits négociés en bourse (ETPs), de modèles et de solutions, ainsi que des produits liés aux actifs numériques. Nos offres permettent aux investisseurs de façonner leur avenir financier et équipent les professionnels financiers pour développer leurs entreprises.",
+    "headquarters": "WisdomTree a son siège social à New York et ses actions ordinaires sont cotées à la Bourse de New York (symbole : WT).",
+    "mission": "Notre mission est de donner aux investisseurs et aux professionnels financiers des solutions innovantes qui offrent accès, transparence et expérience utilisateur améliorée.",
+    "viewExecutiveTeam": "Voir l'Équipe Dirigeante",
+    "viewBoardOfDirectors": "Voir le Conseil d'Administration"
+  },
+  "investors": {
+    "title": "Relations Investisseurs",
+    "subtitle": "Un Message du Fondateur et PDG de WisdomTree",
+    "latestNews": "Dernières Nouvelles",
+    "recentEvent": "Événement Récent",
+    "latestPresentation": "Dernière Présentation",
+    "latestFinancialResults": "Derniers Résultats Financiers",
+    "latestAnnualFiling": "Dernier Dépôt Annuel",
+    "emailAlerts": "Alertes Email",
+    "emailAlertsDescription": "Inscrivez-vous aujourd'hui et recevez les mises à jour de l'entreprise directement dans votre boîte de réception.",
+    "signUpToday": "S'inscrire Aujourd'hui",
+    "companyOverview": "Aperçu de l'Entreprise",
+    "stockSnapshot": "Instantané des Actions",
+    "irContacts": "Contacts RI",
+    "viewPressRelease": "Voir le communiqué de presse",
+    "viewEvent": "Voir l'Événement",
+    "viewAllEvents": "Voir Tous les Événements",
+    "viewPresentation": "Voir la Présentation",
+    "viewAllPresentations": "Voir Toutes les Présentations",
+    "viewAllNews": "Voir Toutes les Nouvelles",
+    "categories": {
+      "irOverview": "Aperçu RI",
+      "newsAndEvents": "Nouvelles et Événements",
+      "companyInfo": "Informations sur l'Entreprise",
+      "financials": "Finances",
+      "stockData": "Données des Actions",
+      "secFilings": "Dépôts SEC",
+      "governance": "Gouvernance"
+    },
+    "newsAndEvents": {
+      "overview": "Aperçu",
+      "pressReleases": "Communiqués de Presse",
+      "irCalendar": "Calendrier RI",
+      "presentations": "Présentations",
+      "emailAlerts": "Alertes Email"
+    },
+    "companyInfo": {
+      "overview": "Aperçu",
+      "corporateResponsibility": "Responsabilité Corporative",
+      "executiveTeam": "Équipe Dirigeante",
+      "advisor": "Conseiller",
+      "annualReportsAndProxy": "Rapports Annuels et Procuration",
+      "contacts": "Contacts",
+      "faq": "FAQ"
+    },
+    "stockData": {
+      "quote": "Cotation",
+      "charts": "Graphiques",
+      "historicalData": "Données Historiques",
+      "analystCoverage": "Couverture d'Analystes"
+    },
+    "secFilings": {
+      "allSecFilings": "Tous les Dépôts SEC",
+      "annualReports": "Rapports Annuels",
+      "quarterlyReports": "Rapports Trimestriels",
+      "section16Filings": "Dépôts Section 16"
+    },
+    "governance": {
+      "overview": "Aperçu",
+      "boardOfDirectors": "Conseil d'Administration",
+      "boardCommittees": "Comités du Conseil",
+      "governanceDocuments": "Documents de Gouvernance",
+      "contactTheBoard": "Contacter le Conseil"
+    }
+  },
+  "contact": {
+    "title": "Nous Contacter",
+    "headquarters": "Siège Social",
+    "investorRelations": "Relations Investisseurs",
+    "transferAgent": "Agent de Transfert",
+    "address": {
+      "street": "250 West 34th Street",
+      "floor": "3e Étage",
+      "city": "New York",
+      "state": "NY",
+      "zip": "10119",
+      "country": "États-Unis"
+    },
+    "transferAgentInfo": {
+      "company": "Continental Stock Transfer & Trust Company",
+      "address": "One State Street Plaza",
+      "floor": "30e Étage",
+      "city": "New York",
+      "state": "NY",
+      "zip": "10004-1561",
+      "country": "États-Unis",
+      "phone": "212-509-4000"
+    }
+  },
+  "footer": {
+    "companyProfile": "Profil de l'Entreprise",
+    "contacts": "Contacts",
+    "rssNewsFeed": "Flux RSS des Nouvelles",
+    "privacyPolicy": "Politique de Confidentialité",
+    "cookiePolicy": "Politique des Cookies",
+    "termsOfUse": "Conditions d'Utilisation",
+    "accessibility": "Accessibilité",
+    "sitemap": "Plan du Site",
+    "copyright": "©2025 WisdomTree, Inc. Tous Droits Réservés.",
+    "trademarks": "WisdomTree, WisdomTree Prime, WisdomTree Connect et les logos de l'entreprise sont des marques de commerce de WisdomTree, Inc., aux États-Unis et ailleurs. Toutes les autres marques de commerce appartiennent à leurs propriétaires respectifs.",
+    "marketDataDisclaimer": "Données de Marché copyright © 2025 QuoteMedia. Données retardées de 15 minutes sauf indication contraire (voir les délais pour toutes les bourses).RT=Temps Réel, EOD=Fin de Journée, PD=Jour Précédent. Données de Marché alimentées par QuoteMedia. Conditions d'Utilisation."
+  },
+  "metrics": {
+    "historicalEtfAum": "AUM Historique des ETF",
+    "historicalEtfNetInflows": "Flux Nets Historiques des ETF",
+    "quarterEnded": "Trimestre Terminé",
+    "fiscalYearEnded": "Pour l'Année Fiscale Terminée"
+  },
+  "documents": {
+    "earningsRelease": "Communiqué de Résultats",
+    "earningsWebcast": "Webcast de Résultats",
+    "presentation": "Présentation",
+    "filing": "Dépôt",
+    "html": "HTML",
+    "pdf": "PDF",
+    "audio": "Audio",
+    "transcript": "Transcription",
+    "xbrl": "XBRL",
+    "zip": "ZIP"
+  },
+  "time": {
+    "am": "am",
+    "pm": "pm",
+    "edt": "EDT",
+    "est": "EST"
+  }
+}
