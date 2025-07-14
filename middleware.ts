@@ -6,26 +6,28 @@ const locales = ["en-us", "es", "en-uk", "fr"];
 function getLocale(request: NextRequest) {
   const acceptLanguage = request.headers.get("accept-language");
   if (!acceptLanguage) return "en-us";
-  
+
   // Parse the accept-language header to find the best matching locale
-  const preferredLanguages = acceptLanguage.split(",").map(lang => lang.split(";")[0].trim());
-  
+  const preferredLanguages = acceptLanguage
+    .split(",")
+    .map((lang) => lang.split(";")[0].trim());
+
   // First try to find an exact match
   for (const lang of preferredLanguages) {
     if (locales.includes(lang)) {
       return lang;
     }
   }
-  
+
   // If no exact match, try to find a language match (e.g., "en" matches "en-us")
   for (const lang of preferredLanguages) {
     const langCode = lang.split("-")[0];
-    const matchedLocale = locales.find(locale => locale.startsWith(langCode));
+    const matchedLocale = locales.find((locale) => locale.startsWith(langCode));
     if (matchedLocale) {
       return matchedLocale;
     }
   }
-  
+
   // Fallback to default
   return "en-us";
 }
@@ -49,8 +51,8 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Skip all internal paths (_next)
-    "/((?!_next).*)",
+    // Skip all internal paths (_next) and studio paths
+    "/((?!api|_next|studio).*)",
     // Optional: only run on root (/) URL
     // '/'
   ],

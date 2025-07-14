@@ -1,6 +1,6 @@
 import "@/app/globals.css";
 
-export default async function Layout({
+export default async function layout({
   children,
   params,
 }: {

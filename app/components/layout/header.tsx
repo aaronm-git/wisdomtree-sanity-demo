@@ -246,6 +246,10 @@ export default function Header({ lang, dict }: HeaderProps) {
               </div>
             )}
           </div>
+
+          <Link href={`/studio`} className="flex items-center">
+            Studio ⛭
+          </Link>
         </div>
       </div>
 
