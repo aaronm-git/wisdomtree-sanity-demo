@@ -9,6 +9,8 @@ function HeroVideoBlock({ block }: { block: HeroVideoBlockType }) {
         <Image
           src={block.videoUrl?.thumbnailUrl || ""}
           alt={block.heading?.heading || ""}
+          width={1000}
+          height={1000}
         />
       )}
       <video src={block.videoUrl?.videoUrl} />

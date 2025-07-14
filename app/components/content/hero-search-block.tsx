@@ -25,6 +25,8 @@ async function HeroSearchBlock({ block }: { block: HeroSearchBlockType }) {
       <Image
         src={block.backgroundImage?.imageUrl || ""}
         alt={block.heading?.heading || ""}
+        width={1000}
+        height={1000}
       />
       <h2>{block.searchLabel}</h2>
       <div>

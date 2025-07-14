@@ -29,7 +29,7 @@ export default async function Page({
   const page: GET_PAGE_REFERENCEResult = await client.fetch(
     GET_PAGE_REFERENCE,
     {
-      slug: "home",
+      slug: "homepage",
       language: lang,
     }
   );
