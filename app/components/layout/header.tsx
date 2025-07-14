@@ -5,54 +5,16 @@ import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import Logo from "@/app/images/logo.png";
 
-interface Dictionary {
-  navigation: {
-    wisdomtreeInvestments: string;
-    wisdomtreePrime: string;
-    wisdomtreeConnect: string;
-    investorRelations: string;
-    localSites: string;
-    thoughtLeadership: string;
-    aboutUs: string;
-    press: string;
-    careers: string;
-    contact: string;
-    usInvestors: string;
-    europeInvestors: string;
-    unitedStates: string;
-    switzerland: string;
-    germany: string;
-    finland: string;
-    france: string;
-    unitedKingdom: string;
-    ireland: string;
-    italy: string;
-    luxembourg: string;
-    netherlands: string;
-    norway: string;
-    sweden: string;
-  };
-  header: {
-    companyName: string;
-  };
-  common: {
-    menu: string;
-  };
-}
-
 interface HeaderProps {
-  lang: "en-us" | "en-uk" | "es" | "fr";
-  dict: Dictionary;
+  lang: string;
 }
 
-export default function Header({ lang, dict }: HeaderProps) {
+export default function Header({ lang }: HeaderProps) {
   const [isInvestmentsDropdownOpen, setIsInvestmentsDropdownOpen] =
     useState(false);
   const [isLocalSitesDropdownOpen, setIsLocalSitesDropdownOpen] =
     useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [mobileInvestmentsOpen, setMobileInvestmentsOpen] = useState(false);
-  const [mobileLocalSitesOpen, setMobileLocalSitesOpen] = useState(false);
 
   const investmentsDropdownRef = useRef<HTMLDivElement>(null);
   const localSitesDropdownRef = useRef<HTMLDivElement>(null);
@@ -81,11 +43,13 @@ export default function Header({ lang, dict }: HeaderProps) {
   const investorRegions = [
     {
       key: "usInvestors",
+      label: "US Investors",
       href: "https://www.wisdomtree.com/investments",
       external: true,
     },
     {
       key: "europeInvestors",
+      label: "Europe Investors",
       href: "https://www.wisdomtree.eu",
       external: true,
     },
@@ -93,33 +57,103 @@ export default function Header({ lang, dict }: HeaderProps) {
 
   const localSites: Array<{
     key: string;
+    label: string;
     href: string;
     external: boolean;
     enabled: boolean;
-    customLabel?: string;
   }> = [
-    { key: "unitedStates", href: "/en-us", external: false, enabled: true },
-    { key: "unitedKingdom", href: "/en-uk", external: false, enabled: true },
-    { key: "france", href: "/fr", external: false, enabled: true },
-    // Note: Using a custom label for Spain since it's not in the dictionary
+    {
+      key: "unitedStates",
+      label: "United States",
+      href: "/en-us",
+      external: false,
+      enabled: true,
+    },
+    {
+      key: "unitedKingdom",
+      label: "United Kingdom",
+      href: "/en-uk",
+      external: false,
+      enabled: true,
+    },
+    {
+      key: "france",
+      label: "France",
+      href: "/fr",
+      external: false,
+      enabled: true,
+    },
     {
       key: "spain",
+      label: "Spain",
       href: "/es",
       external: false,
       enabled: true,
-      customLabel:
-        lang === "es" ? "España" : lang === "fr" ? "Espagne" : "Spain",
     },
     // Disabled sites - not supported in current implementation
-    { key: "switzerland", href: "#", external: false, enabled: false },
-    { key: "germany", href: "#", external: false, enabled: false },
-    { key: "finland", href: "#", external: false, enabled: false },
-    { key: "ireland", href: "#", external: false, enabled: false },
-    { key: "italy", href: "#", external: false, enabled: false },
-    { key: "luxembourg", href: "#", external: false, enabled: false },
-    { key: "netherlands", href: "#", external: false, enabled: false },
-    { key: "norway", href: "#", external: false, enabled: false },
-    { key: "sweden", href: "#", external: false, enabled: false },
+    {
+      key: "switzerland",
+      label: "Switzerland",
+      href: "#",
+      external: false,
+      enabled: false,
+    },
+    {
+      key: "germany",
+      label: "Germany",
+      href: "#",
+      external: false,
+      enabled: false,
+    },
+    {
+      key: "finland",
+      label: "Finland",
+      href: "#",
+      external: false,
+      enabled: false,
+    },
+    {
+      key: "ireland",
+      label: "Ireland",
+      href: "#",
+      external: false,
+      enabled: false,
+    },
+    {
+      key: "italy",
+      label: "Italy",
+      href: "#",
+      external: false,
+      enabled: false,
+    },
+    {
+      key: "luxembourg",
+      label: "Luxembourg",
+      href: "#",
+      external: false,
+      enabled: false,
+    },
+    {
+      key: "netherlands",
+      label: "Netherlands",
+      href: "#",
+      external: false,
+      enabled: false,
+    },
+    {
+      key: "norway",
+      label: "Norway",
+      href: "#",
+      external: false,
+      enabled: false,
+    },
+    {
+      key: "sweden",
+      label: "Sweden",
+      href: "#",
+      external: false,
+      enabled: false,
+    },
   ];
 
   return (
@@ -135,7 +169,7 @@ export default function Header({ lang, dict }: HeaderProps) {
               }
               className="flex items-center space-x-1 hover:text-gray-300 transition-colors"
             >
-              <span>{dict.navigation.wisdomtreeInvestments}</span>
+              <span>WisdomTree Investments</span>
               <svg
                 className="w-4 h-4"
                 fill="none"
@@ -151,51 +185,50 @@ export default function Header({ lang, dict }: HeaderProps) {
               </svg>
             </button>
 
+            {/* Dropdown menu */}
             {isInvestmentsDropdownOpen && (
-              <div className="absolute top-full left-0 mt-1 bg-white text-gray-900 shadow-lg rounded-md py-2 min-w-48 z-50">
-                {investorRegions.map((region) => (
-                  <a
-                    key={region.key}
-                    href={region.href}
-                    target={region.external ? "_blank" : undefined}
-                    rel={region.external ? "noopener noreferrer" : undefined}
-                    className="block px-4 py-2 hover:bg-gray-100 transition-colors"
-                  >
-                    {
-                      dict.navigation[
-                        region.key as keyof typeof dict.navigation
-                      ]
-                    }
-                  </a>
-                ))}
+              <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+                <div className="py-1">
+                  {investorRegions.map((region) => (
+                    <Link
+                      key={region.key}
+                      href={region.href}
+                      target={region.external ? "_blank" : undefined}
+                      rel={region.external ? "noopener noreferrer" : undefined}
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      {region.label}
+                    </Link>
+                  ))}
+                </div>
               </div>
             )}
           </div>
 
-          {/* Direct Links */}
+          {/* Other navigation items */}
           <a
-            href="https://www.wisdomtreeprime.com/?utm_source=referral&utm_medium=wisdomtree.com"
+            href="https://www.wisdomtree.com/prime"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-gray-300 transition-colors"
           >
-            {dict.navigation.wisdomtreePrime}
+            WisdomTree Prime
           </a>
           <a
-            href="https://www.wisdomtreeconnect.com"
+            href="https://www.wisdomtree.com/connect"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-gray-300 transition-colors"
           >
-            {dict.navigation.wisdomtreeConnect}
+            WisdomTree Connect
           </a>
           <a
-            href="http://ir.wisdomtree.com/"
+            href="https://ir.wisdomtree.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-gray-300 transition-colors"
           >
-            {dict.navigation.investorRelations}
+            Investor Relations
           </a>
 
           {/* Local Sites Dropdown */}
@@ -206,7 +239,7 @@ export default function Header({ lang, dict }: HeaderProps) {
               }
               className="flex items-center space-x-1 hover:text-gray-300 transition-colors"
             >
-              <span>{dict.navigation.localSites}</span>
+              <span>Local Sites</span>
               <svg
                 className="w-4 h-4"
                 fill="none"
@@ -222,285 +255,145 @@ export default function Header({ lang, dict }: HeaderProps) {
               </svg>
             </button>
 
+            {/* Dropdown menu */}
             {isLocalSitesDropdownOpen && (
-              <div className="absolute top-full right-0 mt-1 bg-white text-gray-900 shadow-lg rounded-md py-2 min-w-48 z-50 max-h-80 overflow-y-auto">
-                {localSites.map((site) => (
-                  <a
-                    key={site.key}
-                    href={site.enabled ? site.href : undefined}
-                    target={site.external ? "_blank" : undefined}
-                    rel={site.external ? "noopener noreferrer" : undefined}
-                    className={`block px-4 py-2 transition-colors ${
-                      site.enabled
-                        ? "hover:bg-gray-100"
-                        : "text-gray-400 cursor-not-allowed"
-                    }`}
-                    onClick={
-                      !site.enabled ? (e) => e.preventDefault() : undefined
-                    }
-                  >
-                    {site.customLabel ||
-                      dict.navigation[site.key as keyof typeof dict.navigation]}
-                  </a>
-                ))}
+              <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+                <div className="py-1">
+                  {localSites.map((site) => (
+                    <Link
+                      key={site.key}
+                      href={site.href}
+                      target={site.external ? "_blank" : undefined}
+                      rel={site.external ? "noopener noreferrer" : undefined}
+                      className={`block px-4 py-2 text-sm ${
+                        site.enabled
+                          ? "text-gray-700 hover:bg-gray-100"
+                          : "text-gray-400 cursor-not-allowed"
+                      }`}
+                      onClick={(e) => {
+                        if (!site.enabled) {
+                          e.preventDefault();
+                        }
+                      }}
+                    >
+                      {site.label}
+                    </Link>
+                  ))}
+                </div>
               </div>
             )}
           </div>
-
-          <Link href={`/studio`} className="flex items-center">
-            Studio ⛭
-          </Link>
         </div>
       </div>
 
       {/* Main header */}
-      <div className="px-4 py-4 bg-white">
+      <div className="px-4 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center">
-            <Link href={`/${lang}`} className="flex items-center">
-              <Image
-                src={Logo}
-                alt={dict.header.companyName}
-                width={200}
-                height={60}
-                className="h-12 w-auto"
-              />
-            </Link>
-          </div>
+          <Link href={`/${lang}`} className="flex items-center space-x-2">
+            <Image
+              src={Logo}
+              alt="WisdomTree"
+              width={40}
+              height={40}
+              className="w-10 h-10"
+            />
+            <span className="text-xl font-bold">WisdomTree</span>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <Link
-              href={`/${lang}/about-wisdomtree`}
-              className="text-gray-900 hover:text-gray-600 transition-colors font-medium tracking-wide"
+              href={`/${lang}/about`}
+              className="hover:text-gray-300 transition-colors"
             >
-              {dict.navigation.aboutUs}
+              About Us
             </Link>
             <Link
               href={`/${lang}/thought-leadership`}
-              className="text-gray-900 hover:text-gray-600 transition-colors font-medium tracking-wide"
+              className="hover:text-gray-300 transition-colors"
             >
-              {dict.navigation.thoughtLeadership}
+              Thought Leadership
             </Link>
             <Link
-              href={`/${lang}/about-wisdomtree/press-room`}
-              className="text-gray-900 hover:text-gray-600 transition-colors font-medium tracking-wide"
+              href={`/${lang}/press`}
+              className="hover:text-gray-300 transition-colors"
             >
-              {dict.navigation.press}
+              Press
             </Link>
             <Link
-              href={`/${lang}/about-wisdomtree/careers-at-wisdomtree`}
-              className="text-gray-900 hover:text-gray-600 transition-colors font-medium tracking-wide"
+              href={`/${lang}/careers`}
+              className="hover:text-gray-300 transition-colors"
             >
-              {dict.navigation.careers}
+              Careers
             </Link>
             <Link
-              href={`/${lang}/about-wisdomtree/contact-us`}
-              className="text-gray-900 hover:text-gray-600 transition-colors font-medium tracking-wide"
+              href={`/${lang}/contact`}
+              className="hover:text-gray-300 transition-colors"
             >
-              {dict.navigation.contact}
+              Contact
             </Link>
           </nav>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-900 hover:text-gray-600 focus:outline-none focus:text-gray-600"
-              aria-label={dict.common.menu}
+          <button
+            className="md:hidden"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
-          </div>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden mt-4 pb-4 border-t border-gray-700">
+            <nav className="flex flex-col space-y-2 mt-4">
+              <Link
+                href={`/${lang}/about`}
+                className="py-2 hover:text-gray-300 transition-colors"
+              >
+                About Us
+              </Link>
+              <Link
+                href={`/${lang}/thought-leadership`}
+                className="py-2 hover:text-gray-300 transition-colors"
+              >
+                Thought Leadership
+              </Link>
+              <Link
+                href={`/${lang}/press`}
+                className="py-2 hover:text-gray-300 transition-colors"
+              >
+                Press
+              </Link>
+              <Link
+                href={`/${lang}/careers`}
+                className="py-2 hover:text-gray-300 transition-colors"
+              >
+                Careers
+              </Link>
+              <Link
+                href={`/${lang}/contact`}
+                className="py-2 hover:text-gray-300 transition-colors"
+              >
+                Contact
+              </Link>
+            </nav>
+          </div>
+        )}
       </div>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-slate-800 border-t border-slate-700">
-          <div className="px-4 py-2 space-y-1">
-            {/* Primary Navigation */}
-            <Link
-              href={`/${lang}/about-wisdomtree`}
-              className="block py-2 text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {dict.navigation.aboutUs}
-            </Link>
-            <Link
-              href={`/${lang}/thought-leadership`}
-              className="block py-2 text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {dict.navigation.thoughtLeadership}
-            </Link>
-            <Link
-              href={`/${lang}/about-wisdomtree/press-room`}
-              className="block py-2 text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {dict.navigation.press}
-            </Link>
-            <Link
-              href={`/${lang}/about-wisdomtree/careers-at-wisdomtree`}
-              className="block py-2 text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {dict.navigation.careers}
-            </Link>
-            <Link
-              href={`/${lang}/about-wisdomtree/contact-us`}
-              className="block py-2 text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {dict.navigation.contact}
-            </Link>
-
-            {/* Divider */}
-            <hr className="border-slate-600 my-4" />
-
-            {/* Secondary Navigation */}
-            <div className="space-y-2">
-              {/* WisdomTree Investments */}
-              <div>
-                <button
-                  onClick={() =>
-                    setMobileInvestmentsOpen(!mobileInvestmentsOpen)
-                  }
-                  className="flex items-center justify-between w-full py-2 text-white hover:text-gray-300 transition-colors"
-                >
-                  <span>{dict.navigation.wisdomtreeInvestments}</span>
-                  <svg
-                    className={`w-4 h-4 transition-transform ${
-                      mobileInvestmentsOpen ? "rotate-180" : ""
-                    }`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </button>
-                {mobileInvestmentsOpen && (
-                  <div className="pl-4 space-y-1">
-                    {investorRegions.map((region) => (
-                      <a
-                        key={region.key}
-                        href={region.href}
-                        target={region.external ? "_blank" : undefined}
-                        rel={
-                          region.external ? "noopener noreferrer" : undefined
-                        }
-                        className="block py-1 text-gray-300 hover:text-white transition-colors"
-                      >
-                        {
-                          dict.navigation[
-                            region.key as keyof typeof dict.navigation
-                          ]
-                        }
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {/* Direct Links */}
-              <a
-                href="https://www.wisdomtreeprime.com/?utm_source=referral&utm_medium=wisdomtree.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block py-2 text-white hover:text-gray-300 transition-colors"
-              >
-                {dict.navigation.wisdomtreePrime}
-              </a>
-              <a
-                href="https://www.wisdomtreeconnect.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block py-2 text-white hover:text-gray-300 transition-colors"
-              >
-                {dict.navigation.wisdomtreeConnect}
-              </a>
-              <a
-                href="http://ir.wisdomtree.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block py-2 text-white hover:text-gray-300 transition-colors"
-              >
-                {dict.navigation.investorRelations}
-              </a>
-
-              {/* Local Sites */}
-              <div>
-                <button
-                  onClick={() => setMobileLocalSitesOpen(!mobileLocalSitesOpen)}
-                  className="flex items-center justify-between w-full py-2 text-white hover:text-gray-300 transition-colors"
-                >
-                  <span>{dict.navigation.localSites}</span>
-                  <svg
-                    className={`w-4 h-4 transition-transform ${
-                      mobileLocalSitesOpen ? "rotate-180" : ""
-                    }`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </button>
-                {mobileLocalSitesOpen && (
-                  <div className="pl-4 space-y-1 max-h-40 overflow-y-auto">
-                    {localSites.map((site) => (
-                      <a
-                        key={site.key}
-                        href={site.enabled ? site.href : undefined}
-                        target={site.external ? "_blank" : undefined}
-                        rel={site.external ? "noopener noreferrer" : undefined}
-                        className={`block py-1 transition-colors ${
-                          site.enabled
-                            ? "text-gray-300 hover:text-white"
-                            : "text-gray-500 cursor-not-allowed"
-                        }`}
-                        onClick={
-                          !site.enabled ? (e) => e.preventDefault() : undefined
-                        }
-                      >
-                        {site.customLabel ||
-                          dict.navigation[
-                            site.key as keyof typeof dict.navigation
-                          ]}
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </header>
   );
 }

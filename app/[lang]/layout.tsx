@@ -5,7 +5,7 @@ export default async function layout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ lang: "en-us" | "en-uk" | "es" | "fr" }>;
+  params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
 

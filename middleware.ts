@@ -1,11 +1,31 @@
 import { NextRequest, NextResponse } from "next/server";
+import { client } from "@/sanity/lib/client";
+import { GET_AVAILABLE_LANGUAGES } from "@/sanity/lib/queries";
 
-const locales = ["en-us", "es", "en-uk", "fr"];
+// Cache for supported locales to avoid repeated Sanity queries
+let supportedLocales: string[] | null = null;
+
+async function getSupportedLocales() {
+  if (supportedLocales) return supportedLocales;
+
+  try {
+    const languages = await client.fetch(GET_AVAILABLE_LANGUAGES);
+    supportedLocales = [
+      ...new Set(languages.map((item: { language: string }) => item.language)),
+    ].filter(Boolean) as string[];
+    return supportedLocales;
+  } catch (error) {
+    // Fallback to configured languages if Sanity is unavailable
+    console.error("Error fetching languages from Sanity:", error);
+    return ["en-us", "es", "en-uk", "fr"];
+  }
+}
 
 // Get the preferred locale, similar to the above or using a library
-function getLocale(request: NextRequest) {
+async function getLocale(request: NextRequest) {
+  const locales = await getSupportedLocales();
   const acceptLanguage = request.headers.get("accept-language");
-  if (!acceptLanguage) return "en-us";
+  if (!acceptLanguage) return locales[0] || "en-us";
 
   // Parse the accept-language header to find the best matching locale
   const preferredLanguages = acceptLanguage
@@ -28,11 +48,13 @@ function getLocale(request: NextRequest) {
     }
   }
 
-  // Fallback to default
-  return "en-us";
+  // Fallback to first available locale
+  return locales[0] || "en-us";
 }
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
+  const locales = await getSupportedLocales();
+
   // Check if there is any supported locale in the pathname
   const { pathname } = request.nextUrl;
   const pathnameHasLocale = locales.some(
@@ -42,7 +64,7 @@ export function middleware(request: NextRequest) {
   if (pathnameHasLocale) return;
 
   // Redirect if there is no locale
-  const locale = getLocale(request);
+  const locale = await getLocale(request);
   request.nextUrl.pathname = `/${locale}${pathname}`;
   // e.g. incoming request is /products
   // The new URL is now /en-US/products

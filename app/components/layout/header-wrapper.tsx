@@ -1,12 +1,9 @@
-import { getDictionary } from "../../[lang]/dictionaries";
 import Header from "./header";
 
 interface HeaderWrapperProps {
-  lang: "en-us" | "en-uk" | "es" | "fr";
+  lang: string;
 }
 
-export default async function HeaderWrapper({ lang }: HeaderWrapperProps) {
-  const dict = await getDictionary(lang);
-
-  return <Header lang={lang} dict={dict} />;
+export default function HeaderWrapper({ lang }: HeaderWrapperProps) {
+  return <Header lang={lang} />;
 }

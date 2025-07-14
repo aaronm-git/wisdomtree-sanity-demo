@@ -246,11 +246,40 @@ export type GET_PAGE_REFERENCEResult = {
   } & HeroVideoBlock>;
   language?: string;
 } | null;
+// Variable: GET_AVAILABLE_LANGUAGES
+// Query: *[_type == "page"] | order(language asc) {    language  }
+export type GET_AVAILABLE_LANGUAGESResult = Array<{
+  language: string | null;
+}>;
+// Variable: GET_PAGES_BY_LANGUAGE
+// Query: *[_type == "page" && language == $language] {    _id,    title,    slug,    language  }
+export type GET_PAGES_BY_LANGUAGEResult = Array<{
+  _id: string;
+  title: string | null;
+  slug: Slug | null;
+  language: string | null;
+}>;
+// Variable: GET_ALL_HOMEPAGE_LANGUAGES
+// Query: *[_type == "page" && slug.current == "home"] {    _id,    title,    slug,    language,    content  }
+export type GET_ALL_HOMEPAGE_LANGUAGESResult = Array<{
+  _id: string;
+  title: string | null;
+  slug: Slug | null;
+  language: string | null;
+  content: Array<{
+    _key: string;
+  } & HeroSearchBlock | {
+    _key: string;
+  } & HeroVideoBlock> | null;
+}>;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n  *[_type == \"page\" && slug.current == $slug && language == $language][0]\n": GET_PAGE_REFERENCEResult;
+    "\n  *[_type == \"page\"] | order(language asc) {\n    language\n  }\n": GET_AVAILABLE_LANGUAGESResult;
+    "\n  *[_type == \"page\" && language == $language] {\n    _id,\n    title,\n    slug,\n    language\n  }\n": GET_PAGES_BY_LANGUAGEResult;
+    "\n  *[_type == \"page\" && slug.current == \"home\"] {\n    _id,\n    title,\n    slug,\n    language,\n    content\n  }\n": GET_ALL_HOMEPAGE_LANGUAGESResult;
   }
 }
