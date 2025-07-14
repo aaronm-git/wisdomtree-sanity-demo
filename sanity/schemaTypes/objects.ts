@@ -94,3 +94,32 @@ export const linkType = defineType({
     }),
   ],
 });
+
+export const topPagesType = defineType({
+  name: "top-pages-object",
+  type: "object",
+  fields: [
+    defineField({
+      name: "topPages",
+      type: "array",
+      options: {
+        layout: "grid",
+      },
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "page" }],
+        },
+      ],
+      title: "Top Pages",
+      description: "The top pages to display in the top pages block.",
+    }),
+    defineField({
+      name: "maxPages",
+      type: "number",
+      title: "Max Pages",
+      description:
+        "The maximum number of pages to display in the top pages block.",
+    }),
+  ],
+});

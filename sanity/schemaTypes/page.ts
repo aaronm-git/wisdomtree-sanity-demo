@@ -4,6 +4,17 @@ export default defineType({
   name: "page",
   title: "Page",
   type: "document",
+  preview: {
+    select: {
+      title: "title",
+      subtitle: "slug.current",
+      language: "language",
+    },
+    prepare: ({ title, subtitle, language }) => ({
+      title: `${title} (${language})`,
+      subtitle,
+    }),
+  },
   groups: [
     {
       name: "content",
@@ -45,14 +56,14 @@ export default defineType({
       name: "content",
       title: "Content",
       type: "array",
-      of: [{ type: "hero-video-block" }],
+      of: [{ type: "hero-video-block" }, { type: "hero-search-block" }],
       group: "content",
     }),
     defineField({
       name: "language",
       type: "string",
       readOnly: true,
-      hidden: false,
+      hidden: true,
       group: "language",
     }),
   ],
