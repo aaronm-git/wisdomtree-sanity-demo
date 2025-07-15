@@ -2,8 +2,8 @@ import { defineField, defineType } from 'sanity';
 import { createSlugUniqueValidator } from '@/sanity/lib/slugUtils';
 
 export default defineType({
-  name: 'page',
-  title: 'Page',
+  name: 'post',
+  title: 'Post',
   type: 'document',
   preview: {
     select: {
@@ -12,7 +12,7 @@ export default defineType({
       language: 'language',
     },
     prepare: ({ title, subtitle, language }) => ({
-      title: `${title} (${language})`,
+      title: language ? `${title} (${language})` : title,
       subtitle,
     }),
   },
@@ -50,23 +50,29 @@ export default defineType({
       group: 'content',
       options: {
         source: 'title',
-        isUnique: createSlugUniqueValidator('page'),
+        isUnique: createSlugUniqueValidator('post'),
         documentInternationalization: {
           exclude: true,
         },
       },
     }),
     defineField({
-      name: 'seo',
-      title: 'SEO',
-      type: 'page-seo-object',
-      group: 'seo',
+      name: 'featuredImage',
+      title: 'Featured Image',
+      type: 'image-object',
+      group: 'content',
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+      group: 'content',
     }),
     defineField({
       name: 'content',
       title: 'Content',
       type: 'array',
-      of: [{ type: 'hero-video-block' }, { type: 'hero-search-block' }, { type: 'whats-new-block' }],
+      of: [{ type: 'block' }],
       group: 'content',
     }),
     defineField({

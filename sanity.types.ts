@@ -14,13 +14,19 @@
 
 // Source: schema.json
 export type LinkObject = {
-  _type: "link-object";
+  _type: 'link-object';
   linkLabel?: string;
   linkUrl?: string;
 };
 
+export type WhatsNewBlock = {
+  _type: 'whats-new-block';
+  title?: string;
+  description?: string;
+};
+
 export type HeroSearchBlock = {
-  _type: "hero-search-block";
+  _type: 'hero-search-block';
   heading?: HeadingObject;
   searchLabel?: string;
   showTopPages?: boolean;
@@ -28,39 +34,33 @@ export type HeroSearchBlock = {
   backgroundImage?: ImageObject;
 };
 
-export type ImageObject = {
-  _type: "image-object";
-  imageUrl?: string;
-  altText?: string;
-};
-
 export type TopPagesObject = {
-  _type: "top-pages-object";
+  _type: 'top-pages-object';
   topPages?: Array<{
     _ref: string;
-    _type: "reference";
+    _type: 'reference';
     _weak?: boolean;
     _key: string;
-    [internalGroqTypeReferenceTo]?: "page";
+    [internalGroqTypeReferenceTo]?: 'page';
   }>;
   maxPages?: number;
 };
 
 export type HeroVideoBlock = {
-  _type: "hero-video-block";
+  _type: 'hero-video-block';
   heading?: HeadingObject;
   videoUrl?: VideoObject;
 };
 
 export type VideoObject = {
-  _type: "video-object";
+  _type: 'video-object';
   videoLabel?: string;
   thumbnailUrl?: string;
   videoUrl?: string;
 };
 
 export type HeadingObject = {
-  _type: "heading-object";
+  _type: 'heading-object';
   eyebrowText?: string;
   heading?: string;
   subheading?: string;
@@ -68,48 +68,113 @@ export type HeadingObject = {
 
 export type TranslationMetadata = {
   _id: string;
-  _type: "translation.metadata";
+  _type: 'translation.metadata';
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  translations?: Array<{
-    _key: string;
-  } & InternationalizedArrayReferenceValue>;
+  translations?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayReferenceValue
+  >;
   schemaTypes?: Array<string>;
 };
 
 export type InternationalizedArrayReferenceValue = {
-  _type: "internationalizedArrayReferenceValue";
-  value?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "page";
-  };
+  _type: 'internationalizedArrayReferenceValue';
+  value?:
+    | {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'page';
+      }
+    | {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'post';
+      };
 };
 
-export type Page = {
+export type Post = {
   _id: string;
-  _type: "page";
+  _type: 'post';
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
   title?: string;
   slug?: Slug;
+  featuredImage?: ImageObject;
+  description?: string;
   content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: 'span';
+      _key: string;
+    }>;
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
+    listItem?: 'bullet' | 'number';
+    markDefs?: Array<{
+      href?: string;
+      _type: 'link';
+      _key: string;
+    }>;
+    level?: number;
+    _type: 'block';
     _key: string;
-  } & HeroVideoBlock | {
-    _key: string;
-  } & HeroSearchBlock>;
+  }>;
   language?: string;
 };
 
-export type InternationalizedArrayReference = Array<{
-  _key: string;
-} & InternationalizedArrayReferenceValue>;
+export type ImageObject = {
+  _type: 'image-object';
+  imageUrl?: string;
+  altText?: string;
+};
+
+export type Page = {
+  _id: string;
+  _type: 'page';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  seo?: PageSeoObject;
+  content?: Array<
+    | ({
+        _key: string;
+      } & HeroVideoBlock)
+    | ({
+        _key: string;
+      } & HeroSearchBlock)
+    | ({
+        _key: string;
+      } & WhatsNewBlock)
+  >;
+  language?: string;
+};
+
+export type PageSeoObject = {
+  _type: 'page-seo-object';
+  title?: string;
+  description?: string;
+  featuredImage?: string;
+  keywords?: Array<string>;
+  disallowRobots?: boolean;
+  canonicalUrl?: string;
+};
+
+export type InternationalizedArrayReference = Array<
+  {
+    _key: string;
+  } & InternationalizedArrayReferenceValue
+>;
 
 export type SanityImagePaletteSwatch = {
-  _type: "sanity.imagePaletteSwatch";
+  _type: 'sanity.imagePaletteSwatch';
   background?: string;
   foreground?: string;
   population?: number;
@@ -117,7 +182,7 @@ export type SanityImagePaletteSwatch = {
 };
 
 export type SanityImagePalette = {
-  _type: "sanity.imagePalette";
+  _type: 'sanity.imagePalette';
   darkMuted?: SanityImagePaletteSwatch;
   lightVibrant?: SanityImagePaletteSwatch;
   darkVibrant?: SanityImagePaletteSwatch;
@@ -128,14 +193,14 @@ export type SanityImagePalette = {
 };
 
 export type SanityImageDimensions = {
-  _type: "sanity.imageDimensions";
+  _type: 'sanity.imageDimensions';
   height?: number;
   width?: number;
   aspectRatio?: number;
 };
 
 export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
+  _type: 'sanity.imageHotspot';
   x?: number;
   y?: number;
   height?: number;
@@ -143,7 +208,7 @@ export type SanityImageHotspot = {
 };
 
 export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
+  _type: 'sanity.imageCrop';
   top?: number;
   bottom?: number;
   left?: number;
@@ -152,7 +217,7 @@ export type SanityImageCrop = {
 
 export type SanityFileAsset = {
   _id: string;
-  _type: "sanity.fileAsset";
+  _type: 'sanity.fileAsset';
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
@@ -174,7 +239,7 @@ export type SanityFileAsset = {
 
 export type SanityImageAsset = {
   _id: string;
-  _type: "sanity.imageAsset";
+  _type: 'sanity.imageAsset';
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
@@ -196,7 +261,7 @@ export type SanityImageAsset = {
 };
 
 export type SanityImageMetadata = {
-  _type: "sanity.imageMetadata";
+  _type: 'sanity.imageMetadata';
   location?: Geopoint;
   dimensions?: SanityImageDimensions;
   palette?: SanityImagePalette;
@@ -207,43 +272,99 @@ export type SanityImageMetadata = {
 };
 
 export type Geopoint = {
-  _type: "geopoint";
+  _type: 'geopoint';
   lat?: number;
   lng?: number;
   alt?: number;
 };
 
 export type Slug = {
-  _type: "slug";
+  _type: 'slug';
   current?: string;
   source?: string;
 };
 
 export type SanityAssetSourceData = {
-  _type: "sanity.assetSourceData";
+  _type: 'sanity.assetSourceData';
   name?: string;
   id?: string;
   url?: string;
 };
 
-export type AllSanitySchemaTypes = LinkObject | HeroSearchBlock | ImageObject | TopPagesObject | HeroVideoBlock | VideoObject | HeadingObject | TranslationMetadata | InternationalizedArrayReferenceValue | Page | InternationalizedArrayReference | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes =
+  | LinkObject
+  | WhatsNewBlock
+  | HeroSearchBlock
+  | TopPagesObject
+  | HeroVideoBlock
+  | VideoObject
+  | HeadingObject
+  | TranslationMetadata
+  | InternationalizedArrayReferenceValue
+  | Post
+  | ImageObject
+  | Page
+  | PageSeoObject
+  | InternationalizedArrayReference
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityImageHotspot
+  | SanityImageCrop
+  | SanityFileAsset
+  | SanityImageAsset
+  | SanityImageMetadata
+  | Geopoint
+  | Slug
+  | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: GET_PAGE_REFERENCE
-// Query: *[_type == "page" && slug.current == $slug && language == $language][0]
+// Query: *[_type == "page" && slug.current == $slug][0]
 export type GET_PAGE_REFERENCEResult = {
   _id: string;
-  _type: "page";
+  _type: 'page';
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
   title?: string;
   slug?: Slug;
-  content?: Array<{
-    _key: string;
-  } & HeroSearchBlock | {
-    _key: string;
-  } & HeroVideoBlock>;
+  seo?: PageSeoObject;
+  content?: Array<
+    | ({
+        _key: string;
+      } & HeroSearchBlock)
+    | ({
+        _key: string;
+      } & HeroVideoBlock)
+    | ({
+        _key: string;
+      } & WhatsNewBlock)
+  >;
+  language?: string;
+} | null;
+// Variable: GET_PAGE_BY_ID
+// Query: *[_type == "page" && _id == $id][0] {    _id,    ...  }
+export type GET_PAGE_BY_IDResult = {
+  _id: string;
+  _type: 'page';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  seo?: PageSeoObject;
+  content?: Array<
+    | ({
+        _key: string;
+      } & HeroSearchBlock)
+    | ({
+        _key: string;
+      } & HeroVideoBlock)
+    | ({
+        _key: string;
+      } & WhatsNewBlock)
+  >;
   language?: string;
 } | null;
 // Variable: GET_AVAILABLE_LANGUAGES
@@ -259,6 +380,30 @@ export type GET_PAGES_BY_LANGUAGEResult = Array<{
   slug: Slug | null;
   language: string | null;
 }>;
+// Variable: GET_PAGE_BY_LANGUAGE_AND_SLUG
+// Query: *[_type == "page" && language == $language && slug.current == $slug][0]
+export type GET_PAGE_BY_LANGUAGE_AND_SLUGResult = {
+  _id: string;
+  _type: 'page';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  seo?: PageSeoObject;
+  content?: Array<
+    | ({
+        _key: string;
+      } & HeroSearchBlock)
+    | ({
+        _key: string;
+      } & HeroVideoBlock)
+    | ({
+        _key: string;
+      } & WhatsNewBlock)
+  >;
+  language?: string;
+} | null;
 // Variable: GET_ALL_HOMEPAGE_LANGUAGES
 // Query: *[_type == "page" && slug.current == "home"] {    _id,    title,    slug,    language,    content  }
 export type GET_ALL_HOMEPAGE_LANGUAGESResult = Array<{
@@ -266,20 +411,61 @@ export type GET_ALL_HOMEPAGE_LANGUAGESResult = Array<{
   title: string | null;
   slug: Slug | null;
   language: string | null;
-  content: Array<{
+  content: Array<
+    | ({
+        _key: string;
+      } & HeroSearchBlock)
+    | ({
+        _key: string;
+      } & HeroVideoBlock)
+    | ({
+        _key: string;
+      } & WhatsNewBlock)
+  > | null;
+}>;
+// Variable: GET_POSTS_BY_LANGUAGE
+// Query: *[_type == "post" && language == $language] | order(publishedDate desc)
+export type GET_POSTS_BY_LANGUAGEResult = Array<{
+  _id: string;
+  _type: 'post';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  featuredImage?: ImageObject;
+  description?: string;
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: 'span';
+      _key: string;
+    }>;
+    style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal';
+    listItem?: 'bullet' | 'number';
+    markDefs?: Array<{
+      href?: string;
+      _type: 'link';
+      _key: string;
+    }>;
+    level?: number;
+    _type: 'block';
     _key: string;
-  } & HeroSearchBlock | {
-    _key: string;
-  } & HeroVideoBlock> | null;
+  }>;
+  language?: string;
 }>;
 
 // Query TypeMap
-import "@sanity/client";
-declare module "@sanity/client" {
+import '@sanity/client';
+declare module '@sanity/client' {
   interface SanityQueries {
-    "\n  *[_type == \"page\" && slug.current == $slug && language == $language][0]\n": GET_PAGE_REFERENCEResult;
-    "\n  *[_type == \"page\"] | order(language asc) {\n    language\n  }\n": GET_AVAILABLE_LANGUAGESResult;
-    "\n  *[_type == \"page\" && language == $language] {\n    _id,\n    title,\n    slug,\n    language\n  }\n": GET_PAGES_BY_LANGUAGEResult;
-    "\n  *[_type == \"page\" && slug.current == \"home\"] {\n    _id,\n    title,\n    slug,\n    language,\n    content\n  }\n": GET_ALL_HOMEPAGE_LANGUAGESResult;
+    '\n  *[_type == "page" && slug.current == $slug][0]\n': GET_PAGE_REFERENCEResult;
+    '\n  *[_type == "page" && _id == $id][0] {\n    _id,\n    ...\n  }\n': GET_PAGE_BY_IDResult;
+    '\n  *[_type == "page"] | order(language asc) {\n    language\n  }\n': GET_AVAILABLE_LANGUAGESResult;
+    '\n  *[_type == "page" && language == $language] {\n    _id,\n    title,\n    slug,\n    language\n  }\n': GET_PAGES_BY_LANGUAGEResult;
+    '\n  *[_type == "page" && language == $language && slug.current == $slug][0]\n': GET_PAGE_BY_LANGUAGE_AND_SLUGResult;
+    '\n  *[_type == "page" && slug.current == "home"] {\n    _id,\n    title,\n    slug,\n    language,\n    content\n  }\n': GET_ALL_HOMEPAGE_LANGUAGESResult;
+    '\n  *[_type == "post" && language == $language] | order(publishedDate desc)\n': GET_POSTS_BY_LANGUAGEResult;
   }
 }
