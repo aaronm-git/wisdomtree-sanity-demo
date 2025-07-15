@@ -7,7 +7,7 @@ async function WhatsNewBlock({ block, language }: { block: WhatsNewBlockType; la
   const posts = await client.fetch(GET_POSTS_BY_LANGUAGE, { language });
   console.log(posts, '@ server level');
   return (
-    <section className="overflow-hidden bg-gray-200 px-4 py-10">
+    <section className="bg-gray-200 px-4 py-10">
       <div className="container mx-auto">
         <RecentPosts title={block.title || ''} posts={posts} />
       </div>

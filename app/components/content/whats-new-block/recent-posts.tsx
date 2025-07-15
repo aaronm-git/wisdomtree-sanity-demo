@@ -4,6 +4,7 @@ import { GET_POSTS_BY_LANGUAGEResult } from '@/sanity.types';
 import { useEffect, useRef } from 'react';
 import Glide from '@glidejs/glide';
 import '@glidejs/glide/dist/css/glide.core.min.css';
+import '@glidejs/glide/dist/css/glide.theme.min.css';
 import Image from 'next/image';
 
 export default function RecentPosts({ title, posts }: { title: string; posts: GET_POSTS_BY_LANGUAGEResult }) {
@@ -31,13 +32,13 @@ export default function RecentPosts({ title, posts }: { title: string; posts: GE
 
   return (
     <div className="flex gap-4 text-slate-800">
-      <h2 className="text-2xl font-bold text-slate-800">{title}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-slate-800">{title}</h2>
       {/* Glide slider */}
-      <div className="glide" ref={glideRef}>
+      <div className="glide overflow-hidden" ref={glideRef}>
         <div className="glide__track" data-glide-el="track">
           <ul className="glide__slides">
             {posts.map((post, index) => (
-              <li className="glide__slide" key={index}>
+              <li className="glide__slide w-full" key={index}>
                 <div className="flex rounded-md border border-slate-200 bg-white p-4">
                   <div className="min-h-[140px] w-1/8 shrink-0">
                     <Image
