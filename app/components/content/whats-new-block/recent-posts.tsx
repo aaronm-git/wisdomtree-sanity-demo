@@ -10,8 +10,6 @@ import Image from 'next/image';
 export default function RecentPosts({ title, posts }: { title: string; posts: GET_POSTS_BY_LANGUAGEResult }) {
   const glideRef = useRef<HTMLDivElement>(null);
 
-  console.log(posts);
-
   useEffect(() => {
     if (glideRef.current && posts.length > 0) {
       const glide = new Glide(glideRef.current, {
@@ -32,7 +30,9 @@ export default function RecentPosts({ title, posts }: { title: string; posts: GE
 
   return (
     <div className="flex gap-4 text-slate-800">
-      <h2 className="mb-4 text-2xl font-bold text-slate-800">{title}</h2>
+      <div className="">
+        <h2 className="mb-4 text-2xl font-bold text-slate-800">{title}</h2>
+      </div>
       {/* Glide slider */}
       <div className="glide overflow-hidden" ref={glideRef}>
         <div className="glide__track" data-glide-el="track">
@@ -57,9 +57,9 @@ export default function RecentPosts({ title, posts }: { title: string; posts: GE
                   <div className="flex shrink-0 items-center justify-center">
                     <a
                       href={`/blog/${post.slug?.current}`}
-                      className="border border-blue-400 p-2 font-bold text-blue-400"
+                      className="border border-blue-400 p-2 font-bold text-blue-400 hover:bg-blue-400 hover:text-white"
                     >
-                      Read more
+                      Find out more
                     </a>
                   </div>
                 </div>
