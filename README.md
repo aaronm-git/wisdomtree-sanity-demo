@@ -4,8 +4,8 @@ A modern, headless CMS demonstration built with **Next.js 15** and **Sanity.io**
 
 ## 🚀 Live Demo
 
-- **Frontend**: [Your deployed URL here]
-- **Sanity Studio**: [Your deployed URL]/studio
+- **Frontend**: https://wisdomtree-demo.netlify.app/
+- **Sanity Studio**: https://wisdomtree-demo.netlify.app/studio
 
 ## 🛠️ Technical Stack
 
