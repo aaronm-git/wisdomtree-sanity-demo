@@ -208,6 +208,14 @@
             "name": "video-object"
           },
           "optional": true
+        },
+        "backgroundImage": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "image-object"
+          },
+          "optional": true
         }
       }
     }

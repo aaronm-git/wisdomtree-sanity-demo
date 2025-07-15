@@ -50,6 +50,7 @@ export type HeroVideoBlock = {
   _type: 'hero-video-block';
   heading?: HeadingObject;
   videoUrl?: VideoObject;
+  backgroundImage?: ImageObject;
 };
 
 export type VideoObject = {
